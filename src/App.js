@@ -7,7 +7,8 @@ import React, { useState } from 'react';
 
 // Array representing all values for the buttons.
 const buttonValues = [
-  ["C", "+-", "%", "/"],
+  ["C", "del", "√()", "log()"],
+  ["xʸ", "+-", "%", "/"],
   [7, 8, 9, "X"],
   [4, 5, 6, "-"],
   [1, 2, 3, "+"],
@@ -174,6 +175,42 @@ export const App = () => {
     });
   };
 
+  /*
+    Handles the functionality of the square root button.
+    If an input is already present and it is not negative, that value will be squared.
+    Otherwise, the input will be ignored.
+    TODO: Add functionality as to implement the square root for longer equations.
+  */
+  const rootClickHandler = () => {
+    console.log("square root button pressed!");
+  };
+
+  /*
+    Handles the behaviour if the exponent button gets pressed.
+    Checks if a first input is present, ignores press with no prior input.
+    Will wait for the next input to calculate the first input raised to the exponent of the second input.
+    TODO: Add possibility for longer exponents.
+  */
+  const exponentClickHandler = () => {
+    console.log("eponent button pressed!");
+  };
+
+  /*
+    Handles the behaviour if the delete button was pressed.
+    Checks if input was previously given, and will then delete the single last input.
+  */
+  const delClickHandler = () => {
+    console.log("delete button pressed!");
+  };
+
+  /*
+    Handles the behaviour of the logarithm button. 
+    Will calculate the natural logarithm for the given input on base 10.
+  */
+  const logClickHandler = () => {
+    console.log("logarithm button pressed!");
+  };
+
   return (
     <CalculatorFrame>
       <Screen 
@@ -200,6 +237,14 @@ export const App = () => {
                     ? signClickHandler
                     : but === "."
                     ? decimalClickHandler
+                    : but === "√()"
+                    ? rootClickHandler
+                    : but === "del"
+                    ? delClickHandler
+                    : but === "xʸ"
+                    ? exponentClickHandler
+                    : but === "log()"
+                    ? logClickHandler
                     : numClickHandler
                 }
               ></CalculatorButton>
