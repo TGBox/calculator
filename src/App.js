@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 
 // Array representing all values for the buttons.
 const buttonValues = [
-  ["C", "del", "√()", "log()"],
-  ["xʸ", "+-", "%", "/"],
+  ["C", "CE", "√()", "+-"],
+  ["xʸ", "log()", "%", "/"],
   [7, 8, 9, "X"],
   [4, 5, 6, "-"],
   [1, 2, 3, "+"],
@@ -198,7 +198,8 @@ export const App = () => {
     Handles the functionality of the square root button.
     If an input is already present and it is not negative, that value will be squared.
     Otherwise, the input will be ignored.
-    TODO: Add functionality if the first input is square root. Needs validation via equal button.
+    TODO: Add functionality if the first input is square root. 
+      Validation needs to be implemented via equal button.
   */
   const rootClickHandler = () => {
     if(calc.res !== 0) {
@@ -248,7 +249,7 @@ export const App = () => {
   };
 
   /*
-    Handles the behaviour if the delete button was pressed.
+    Handles the behaviour if the clear entry ("CE") button was pressed.
     Checks if input was previously given, and will then delete the single last input.
   */
   const delClickHandler = () => {
@@ -280,7 +281,8 @@ export const App = () => {
   /*
     Handles the behaviour of the logarithm button. 
     Will calculate the logarithm for the given input on base 10.
-    TODO: Add functionality if the first input is the log button. Needs validation via equal button.
+    TODO: Add functionality if the first input is the log button.
+      Validation needs to be implemented via equal button.
   */
   const logClickHandler = () => {
     if(calc.res !== 0) {
@@ -330,7 +332,7 @@ export const App = () => {
                     ? decimalClickHandler
                     : but === "√()"
                     ? rootClickHandler
-                    : but === "del"
+                    : but === "CE"
                     ? delClickHandler
                     : but === "log()"
                     ? logClickHandler
