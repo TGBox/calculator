@@ -5,6 +5,8 @@ import { ButtonBox } from "./components/ButtonBox.js";
 import { CalculatorButton } from "./components/CalculatorButton.js";
 import React, { useState } from 'react';
 
+// TODO: Implement additional advanced math features: sin, cos, arc, natural log, pi, etc. 
+
 // Array representing all values for the buttons.
 const buttonValues = [
   ["C", "CE", "√()", "+-"],
