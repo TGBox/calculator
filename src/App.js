@@ -179,6 +179,7 @@ export const App = () => {
     Handles the functionality of the square root button.
     If an input is already present and it is not negative, that value will be squared.
     Otherwise, the input will be ignored.
+    TODO: Functionality for single square root operations.
     TODO: Add functionality as to implement the square root for longer equations.
   */
   const rootClickHandler = () => {
@@ -189,6 +190,7 @@ export const App = () => {
     Handles the behaviour if the exponent button gets pressed.
     Checks if a first input is present, ignores press with no prior input.
     Will wait for the next input to calculate the first input raised to the exponent of the second input.
+    TODO: Functionality for single exponents.
     TODO: Add possibility for longer exponents.
   */
   const exponentClickHandler = () => {
@@ -200,12 +202,35 @@ export const App = () => {
     Checks if input was previously given, and will then delete the single last input.
   */
   const delClickHandler = () => {
-    console.log("delete button pressed!");
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(removeSpaces(calc.res)).slice(0, -1);
+      if(alteredRes.length === 0) {
+        alteredRes = "0";
+      }
+      setCalc({
+        ...calc,
+        sign: "",
+        num: 0,
+        res: alteredRes,
+      });
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(removeSpaces(calc.num)).slice(0, -1);
+      if(alteredNum.length === 0) {
+        alteredNum = "0";
+      }
+      setCalc({
+        ...calc,
+        sign: "",
+        num: alteredNum,
+        res: 0,
+      });
+    } 
   };
 
   /*
     Handles the behaviour of the logarithm button. 
     Will calculate the natural logarithm for the given input on base 10.
+    TODO: Functionality.
   */
   const logClickHandler = () => {
     console.log("logarithm button pressed!");
