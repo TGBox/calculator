@@ -114,20 +114,26 @@ export const App = () => {
           : sign === "X"
           ? a * b
           : a / b;
-  
-      setCalc({
-        ...calc,
-        res:
-          calc.num === "0" && calc.sign === "/"
-            ? "Can't divide with 0"
-            : toLocaleString(
-              math(
-                Number(removeSpaces(calc.res)), 
-                Number(removeSpaces(calc.num)), 
-                calc.sign)),
-        sign: "",
-        num: 0,
-      });
+      if(calc.num === "0" && calc.sign === "/") {
+        alert("Error!\n\nBad Math!\n\nDivision by 0 is impossible!\n\nTry again!");
+        setCalc({
+          ...calc,
+          res: 0,
+          sign: "",
+          num: 0
+        });
+      } else {
+        setCalc({
+          ...calc,
+          res: toLocaleString(
+                math(
+                  Number(removeSpaces(calc.res)), 
+                  Number(removeSpaces(calc.num)), 
+                  calc.sign)),
+          sign: "",
+          num: 0
+        });
+      }
     }
   };
 
@@ -179,11 +185,53 @@ export const App = () => {
     Handles the functionality of the square root button.
     If an input is already present and it is not negative, that value will be squared.
     Otherwise, the input will be ignored.
-    TODO: Functionality for single square root operations.
-    TODO: Add functionality as to implement the square root for longer equations.
   */
   const rootClickHandler = () => {
     console.log("square root button pressed!");
+    if(calc.res !== 0) {
+      if(Number(calc.res) > 0) {
+        let alteredRes = toLocaleString(Math.sqrt(Number(removeSpaces(calc.res))));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else if(Number(calc.res) < 0) {
+        alert("Can't calculate negative square roots!\n\nTry again!");
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: 0,
+        });
+      } else {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: 0,
+        });
+      }
+    } else if(calc.num !== 0) {
+      if(Number(calc.num) > 0) {
+        let alteredNum = toLocaleString(Math.sqrt(Number(removeSpaces(calc.num))));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        alert("Can't calculate negative square roots!\n\nTry again!");
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: 0,
+        });
+      }
+    }
   };
 
   /*
@@ -205,7 +253,7 @@ export const App = () => {
     if(calc.res !== 0) {
       let alteredRes = toLocaleString(removeSpaces(calc.res)).slice(0, -1);
       if(alteredRes.length === 0) {
-        alteredRes = "0";
+        alteredRes = 0;
       }
       setCalc({
         ...calc,
@@ -216,7 +264,7 @@ export const App = () => {
     } else if(calc.num !== 0) {
       let alteredNum = toLocaleString(removeSpaces(calc.num)).slice(0, -1);
       if(alteredNum.length === 0) {
-        alteredNum = "0";
+        alteredNum = 0;
       }
       setCalc({
         ...calc,
