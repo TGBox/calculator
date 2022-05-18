@@ -259,8 +259,8 @@ export const App = () => {
       setCalc({
         ...calc,
         sign: "",
-        num: 0,
-        res: alteredRes,
+        num: alteredRes,  // Is set as num value to allow further calculations with it.
+        res: 0,
       });
     } else if(calc.num !== 0) {
       let alteredNum = toLocaleString(removeSpaces(calc.num)).slice(0, -1);
