@@ -1,7 +1,7 @@
 .CalculatorFrame {
   width: 340px;
   height: 540px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #004084;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #048400;
 }

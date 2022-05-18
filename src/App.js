@@ -1,4 +1,5 @@
 import './App.css';
+// When export statement is included at the start, we need the curly braces for importing that file.
 import { CalculatorFrame } from "./components/CalculatorFrame.js";
 import { Screen } from "./components/CalculatorScreen.js";
 import { ButtonBox } from "./components/ButtonBox.js";

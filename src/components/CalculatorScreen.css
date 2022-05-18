@@ -1,10 +1,10 @@
 .screen {
   height: 100px;
   width: 100%;
-  margin-bottom: 10px;
-  padding: 0 10px;
+  margin-bottom: 8px;
+  padding: 0 8px;
   background-color: #1e6fb756;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
