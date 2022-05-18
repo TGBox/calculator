@@ -83,7 +83,7 @@ export const App = () => {
   };
 
   /*
-    Handles the behaviour when the "+-" or the "/" buttons get pressed.
+    Handles the behaviour when the "+-", "xʸ" or the "/" buttons get pressed.
     Prevents effects when repeated inputs are registered.
   */
   const signClickHandler = (e) => {
@@ -113,6 +113,8 @@ export const App = () => {
           ? a - b
           : sign === "X"
           ? a * b
+          : sign === "xʸ"
+          ? Math.pow(a, b)
           : a / b;
       if(calc.num === "0" && calc.sign === "/") {
         alert("Error!\n\nBad Math!\n\nDivision by 0 is impossible!\n\nTry again!");
@@ -123,16 +125,27 @@ export const App = () => {
           num: 0
         });
       } else {
-        setCalc({
-          ...calc,
-          res: toLocaleString(
-                math(
-                  Number(removeSpaces(calc.res)), 
-                  Number(removeSpaces(calc.num)), 
-                  calc.sign)),
-          sign: "",
-          num: 0
-        });
+        let result = toLocaleString(math(
+          Number(removeSpaces(calc.res)), 
+          Number(removeSpaces(calc.num)), 
+          calc.sign));
+        if(result === "NaN") {
+          alert("Can't calculate negative square roots!\n\nTry again!");
+          setCalc({
+            ...calc,
+            res: 0,
+            sign: "",
+            num: 0
+          });
+        } else {
+          setCalc({
+            ...calc,
+            res: result,
+            sign: "",
+            num: 0
+          });
+        }
+        
       }
     }
   };
@@ -188,7 +201,6 @@ export const App = () => {
     TODO: Add functionality if the first input is square root. Needs validation via equal button.
   */
   const rootClickHandler = () => {
-    console.log("square root button pressed!");
     if(calc.res !== 0) {
       if(Number(calc.res) > 0) {
         let alteredRes = toLocaleString(Math.sqrt(Number(removeSpaces(calc.res))));
@@ -236,17 +248,6 @@ export const App = () => {
   };
 
   /*
-    Handles the behaviour if the exponent button gets pressed.
-    Checks if a first input is present, ignores press with no prior input.
-    Will wait for the next input to calculate the first input raised to the exponent of the second input.
-    TODO: Functionality for single exponents.
-    TODO: Add possibility for longer exponents.
-  */
-  const exponentClickHandler = () => {
-    console.log("eponent button pressed!");
-  };
-
-  /*
     Handles the behaviour if the delete button was pressed.
     Checks if input was previously given, and will then delete the single last input.
   */
@@ -282,7 +283,6 @@ export const App = () => {
     TODO: Add functionality if the first input is the log button. Needs validation via equal button.
   */
   const logClickHandler = () => {
-    console.log("logarithm button pressed!");
     if(calc.res !== 0) {
       let alteredRes = toLocaleString(Math.log10(removeSpaces(calc.res)));
       setCalc({
@@ -324,7 +324,7 @@ export const App = () => {
                     ? percentClickHandler
                     : but === "="
                     ? equalsClickHandler
-                    : but === "/" || but === "X" || but === "-" || but === "+"
+                    : but === "/" || but === "X" || but === "-" || but === "+" || but === "xʸ"
                     ? signClickHandler
                     : but === "."
                     ? decimalClickHandler
@@ -332,8 +332,6 @@ export const App = () => {
                     ? rootClickHandler
                     : but === "del"
                     ? delClickHandler
-                    : but === "xʸ"
-                    ? exponentClickHandler
                     : but === "log()"
                     ? logClickHandler
                     : numClickHandler
