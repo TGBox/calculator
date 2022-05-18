@@ -185,6 +185,7 @@ export const App = () => {
     Handles the functionality of the square root button.
     If an input is already present and it is not negative, that value will be squared.
     Otherwise, the input will be ignored.
+    TODO: Add functionality if the first input is square root. Needs validation via equal button.
   */
   const rootClickHandler = () => {
     console.log("square root button pressed!");
@@ -277,11 +278,28 @@ export const App = () => {
 
   /*
     Handles the behaviour of the logarithm button. 
-    Will calculate the natural logarithm for the given input on base 10.
-    TODO: Functionality.
+    Will calculate the logarithm for the given input on base 10.
+    TODO: Add functionality if the first input is the log button. Needs validation via equal button.
   */
   const logClickHandler = () => {
     console.log("logarithm button pressed!");
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(Math.log10(removeSpaces(calc.res)));
+      setCalc({
+        ...calc,
+        sign: "",
+        num: 0,
+        res: alteredRes,
+      });
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(Math.log10(removeSpaces(calc.num)));
+      setCalc({
+        ...calc,
+        sign: "",
+        num: alteredNum,
+        res: 0,
+      });
+    }
   };
 
   return (
