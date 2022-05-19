@@ -348,20 +348,54 @@ export const App = () => {
   const sinClickHandler = () => {
     if(calc.res !== 0) {
       let alteredRes = toLocaleString(Math.sin(removeSpaces(calc.res)));
-      setCalc({
-        ...calc,
-        sign: "",
-        num: 0,
-        res: alteredRes,
-      });
+      if(alteredRes !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else {
+        let positiveRes = (calc.res).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveRes,
+        });
+        alteredRes = "-" + toLocaleString(Math.sin(removeSpaces(positiveRes)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      }
     } else if(calc.num !== 0) {
       let alteredNum = toLocaleString(Math.sin(removeSpaces(calc.num)));
-      setCalc({
-        ...calc,
-        sign: "",
-        num: 0,
-        res: alteredNum,
-      });
+      if(alteredNum !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        let positiveNum = (calc.num).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveNum,
+        });
+        alteredNum = "-" + toLocaleString(Math.sin(removeSpaces(positiveNum)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      }
     }
   };
 
@@ -372,20 +406,54 @@ export const App = () => {
   const cosClickHandler = () => {
     if(calc.res !== 0) {
       let alteredRes = toLocaleString(Math.cos(removeSpaces(calc.res)));
-      setCalc({
-        ...calc,
-        sign: "",
-        num: 0,
-        res: alteredRes,
-      });
+      if(alteredRes !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else {
+        let positiveRes = (calc.res).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveRes,
+        });
+        alteredRes = "-" + toLocaleString(Math.cos(removeSpaces(positiveRes)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      }
     } else if(calc.num !== 0) {
       let alteredNum = toLocaleString(Math.cos(removeSpaces(calc.num)));
-      setCalc({
-        ...calc,
-        sign: "",
-        num: 0,
-        res: alteredNum,
-      });
+      if(alteredNum !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        let positiveNum = (calc.num).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveNum,
+        });
+        alteredNum = "-" + toLocaleString(Math.cos(removeSpaces(positiveNum)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      }
     }
   };
 
@@ -396,20 +464,54 @@ export const App = () => {
   const tanClickHandler = () => {
     if(calc.res !== 0) {
       let alteredRes = toLocaleString(Math.tan(removeSpaces(calc.res)));
-      setCalc({
-        ...calc,
-        sign: "",
-        num: 0,
-        res: alteredRes,
-      });
+      if(alteredRes !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else {
+        let positiveRes = (calc.res).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveRes,
+        });
+        alteredRes = "-" + toLocaleString(Math.tan(removeSpaces(positiveRes)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      }
     } else if(calc.num !== 0) {
       let alteredNum = toLocaleString(Math.tan(removeSpaces(calc.num)));
-      setCalc({
-        ...calc,
-        sign: "",
-        num: 0,
-        res: alteredNum,
-      });
+      if(alteredNum !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        let positiveNum = (calc.num).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveNum,
+        });
+        alteredNum = "-" + toLocaleString(Math.tan(removeSpaces(positiveNum)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      }
     }
   };
 
