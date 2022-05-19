@@ -34,9 +34,13 @@ const removeSpaces = (num) => num.toString().replace(/\s/g, "");
   Value reformatting. Takes a String and checks if the first char is a "-". 
   Returns the String if true, or adds a leading "-" and returns that combined String.
 */
-const addLeadingMinus = (str) => {
+const addSingleLeadingMinus = (str) => {
   if(str.charAt(0) === "-") {
-    return str;
+    if(str.charAt(1) === "-") {
+      return str.substring(1);
+    } else {
+      return str;
+    }
   } else {
     return "-" + str;
   }
@@ -294,68 +298,6 @@ export const App = () => {
   };
 
   /*
-    Handles the behaviour of the logarithm button. 
-    Will calculate the logarithm for the given input on base 10.
-    TODO: Add functionality if the first input is the log button.
-      Validation needs to be implemented via equal button.
-    BUG: Negative input sometimes yields a result with two leading minuses. 
-      And Furter execution will result in "-NaN".
-  */
-  const logClickHandler = () => {
-    if(calc.res !== 0) {
-      let alteredRes = toLocaleString(Math.log10(removeSpaces(calc.res)));
-      if(alteredRes !== "NaN") {
-        setCalc({
-          ...calc,
-          sign: "",
-          num: 0,
-          res: alteredRes,
-        });
-      } else {
-        let positiveRes = (calc.res).substring(1);
-        setCalc({
-          ...calc,
-          sign: "",
-          num: calc.num,
-          res: positiveRes,
-        });
-        alteredRes = "-" + toLocaleString(Math.log10(removeSpaces(positiveRes)));
-        setCalc({
-          ...calc,
-          sign: "",
-          num: 0,
-          res: alteredRes,
-        });
-      }
-    } else if(calc.num !== 0) {
-      let alteredNum = toLocaleString(Math.log10(removeSpaces(calc.num)));
-      if(alteredNum !== "NaN") {
-        setCalc({
-          ...calc,
-          sign: "",
-          num: 0,
-          res: alteredNum,
-        });
-      } else {
-        let positiveNum = (calc.num).substring(1);
-        setCalc({
-          ...calc,
-          sign: "",
-          num: positiveNum,
-          res: 0,
-        });
-        alteredNum = "-" + toLocaleString(Math.log10(removeSpaces(positiveNum)));
-        setCalc({
-          ...calc,
-          sign: "",
-          num: 0,
-          res: alteredNum,
-        });
-      }
-    }
-  };
-
-  /*
     Handles the behaviour if the "sin" button was pressed.
     Checks for previous input and applies the sinus function to that value.
   */
@@ -402,7 +344,7 @@ export const App = () => {
           num: calc.num,
           res: positiveNum,
         });
-        alteredNum = addLeadingMinus(toLocaleString(Math.sin(removeSpaces(positiveNum))));
+        alteredNum = addSingleLeadingMinus(toLocaleString(Math.sin(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
@@ -435,7 +377,7 @@ export const App = () => {
           num: calc.num,
           res: positiveRes,
         });
-        alteredRes = addLeadingMinus(toLocaleString(Math.cos(removeSpaces(positiveRes))));
+        alteredRes = addSingleLeadingMinus(toLocaleString(Math.cos(removeSpaces(positiveRes))));
         setCalc({
           ...calc,
           sign: "",
@@ -460,7 +402,7 @@ export const App = () => {
           num: calc.num,
           res: positiveNum,
         });
-        alteredNum = addLeadingMinus(toLocaleString(Math.cos(removeSpaces(positiveNum))));
+        alteredNum = addSingleLeadingMinus(toLocaleString(Math.cos(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
@@ -493,7 +435,7 @@ export const App = () => {
           num: calc.num,
           res: positiveRes,
         });
-        alteredRes = addLeadingMinus(toLocaleString(Math.tan(removeSpaces(positiveRes))));
+        alteredRes = addSingleLeadingMinus(toLocaleString(Math.tan(removeSpaces(positiveRes))));
         setCalc({
           ...calc,
           sign: "",
@@ -518,7 +460,7 @@ export const App = () => {
           num: calc.num,
           res: positiveNum,
         });
-        alteredNum = addLeadingMinus(toLocaleString(Math.tan(removeSpaces(positiveNum))));
+        alteredNum = addSingleLeadingMinus(toLocaleString(Math.tan(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
@@ -529,6 +471,68 @@ export const App = () => {
     }
   };
 
+  /*
+    Handles the behaviour of the logarithm button. 
+    Will calculate the logarithm for the given input on base 10.
+    TODO: Add functionality if the first input is the log button.
+      Validation needs to be implemented via equal button.
+    BUG: Negative input sometimes yields a result with two leading minuses. 
+      And Furter execution will result in "-NaN".
+  */
+  const logClickHandler = () => {
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(Math.log10(removeSpaces(calc.res)));
+      if(alteredRes !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else {
+        let positiveRes = (calc.res).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveRes,
+        });
+        alteredRes = addSingleLeadingMinus(toLocaleString(Math.log10(removeSpaces(positiveRes))));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      }
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(Math.log10(removeSpaces(calc.num)));
+      if(alteredNum !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        let positiveNum = (calc.num).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: positiveNum,
+          res: 0,
+        });
+        alteredNum = addSingleLeadingMinus(toLocaleString(Math.log10(removeSpaces(positiveNum))));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      }
+    }
+  };
+    
   /*
     Handles the behaviour if the "lg()" button was pressed.
     Checks for previous input and calculates the natural logarithm (base e) of that value.
@@ -553,7 +557,7 @@ export const App = () => {
           num: calc.num,
           res: positiveRes,
         });
-        alteredRes = addLeadingMinus(toLocaleString(Math.log(removeSpaces(positiveRes))));
+        alteredRes = addSingleLeadingMinus(toLocaleString(Math.log(removeSpaces(positiveRes))));
         setCalc({
           ...calc,
           sign: "",
@@ -578,7 +582,7 @@ export const App = () => {
           num: positiveNum,
           res: 0,
         });
-        alteredNum = addLeadingMinus(toLocaleString(Math.log(removeSpaces(positiveNum))));
+        alteredNum = addSingleLeadingMinus(toLocaleString(Math.log(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
