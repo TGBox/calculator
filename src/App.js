@@ -10,7 +10,8 @@ import React, { useState } from 'react';
 // Array representing all values for the buttons.
 const buttonValues = [
   ["C", "CE", "√()", "+-"],
-  ["xʸ", "log()", "%", "/"],
+  ["sin", "cos", "tan", "xʸ"],
+  ["lg()", "log()", "%", "/"],
   [7, 8, 9, "X"],
   [4, 5, 6, "-"],
   [1, 2, 3, "+"],
@@ -306,6 +307,54 @@ export const App = () => {
     }
   };
 
+  /*
+    Handles the behaviour if the "sin" button was pressed.
+    Checks for previous input and applies the sinus function to that value.
+  */
+  const sinClickHandler = () => {
+    // TODO: Functionality.
+  };
+
+  /*
+    Handles the behaviour if the "cos" button was pressed.
+    Checks for previous input and applies the cosinus function to that value.
+  */
+  const cosClickHandler = () => {
+    // TODO: Functionality.
+  };
+
+  /*
+    Handles the behaviour if the "tan" button was pressed.
+    Checks for previous input and applies the tangens function to that value.
+  */
+  const tanClickHandler = () => {
+    // TODO: Functionality.
+  };
+
+  /*
+    Handles the behaviour if the "lg()" button was pressed.
+    Checks for previous input and calculates the natural logarithm (base e) of that value.
+  */
+  const lgClickHandler = () => {
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(Math.log(removeSpaces(calc.res)));
+      setCalc({
+        ...calc,
+        sign: "",
+        num: 0,
+        res: alteredRes,
+      });
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(Math.log(removeSpaces(calc.num)));
+      setCalc({
+        ...calc,
+        sign: "",
+        num: alteredNum,
+        res: 0,
+      });
+    }
+  };
+
   return (
     <CalculatorFrame>
       <Screen 
@@ -338,6 +387,14 @@ export const App = () => {
                     ? delClickHandler
                     : but === "log()"
                     ? logClickHandler
+                    : but === "lg()"
+                    ? lgClickHandler
+                    : but === "sin"
+                    ? sinClickHandler
+                    : but === "tan"
+                    ? tanClickHandler
+                    : but === "cos"
+                    ? cosClickHandler
                     : numClickHandler
                 }
               ></CalculatorButton>
