@@ -290,6 +290,64 @@ export const App = () => {
   const logClickHandler = () => {
     if(calc.res !== 0) {
       let alteredRes = toLocaleString(Math.log10(removeSpaces(calc.res)));
+      if(alteredRes !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else {
+        let positiveRes = (calc.res).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveRes,
+        });
+        alteredRes = "-" + toLocaleString(Math.log10(removeSpaces(positiveRes)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      }
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(Math.log10(removeSpaces(calc.num)));
+      if(alteredNum !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        let positiveNum = (calc.num).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: positiveNum,
+          res: 0,
+        });
+        alteredNum = "-" + toLocaleString(Math.log10(removeSpaces(positiveNum)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      }
+    }
+  };
+
+  /*
+    Handles the behaviour if the "sin" button was pressed.
+    Checks for previous input and applies the sinus function to that value.
+  */
+  const sinClickHandler = () => {
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(Math.sin(removeSpaces(calc.res)));
       setCalc({
         ...calc,
         sign: "",
@@ -297,7 +355,7 @@ export const App = () => {
         res: alteredRes,
       });
     } else if(calc.num !== 0) {
-      let alteredNum = toLocaleString(Math.log10(removeSpaces(calc.num)));
+      let alteredNum = toLocaleString(Math.sin(removeSpaces(calc.num)));
       setCalc({
         ...calc,
         sign: "",
@@ -308,36 +366,12 @@ export const App = () => {
   };
 
   /*
-    Handles the behaviour if the "sin" button was pressed.
-    Checks for previous input and applies the sinus function to that value.
-  */
-  const sinClickHandler = () => {
-    // TODO: Functionality.
-  };
-
-  /*
     Handles the behaviour if the "cos" button was pressed.
     Checks for previous input and applies the cosinus function to that value.
   */
   const cosClickHandler = () => {
-    // TODO: Functionality.
-  };
-
-  /*
-    Handles the behaviour if the "tan" button was pressed.
-    Checks for previous input and applies the tangens function to that value.
-  */
-  const tanClickHandler = () => {
-    // TODO: Functionality.
-  };
-
-  /*
-    Handles the behaviour if the "lg()" button was pressed.
-    Checks for previous input and calculates the natural logarithm (base e) of that value.
-  */
-  const lgClickHandler = () => {
     if(calc.res !== 0) {
-      let alteredRes = toLocaleString(Math.log(removeSpaces(calc.res)));
+      let alteredRes = toLocaleString(Math.cos(removeSpaces(calc.res)));
       setCalc({
         ...calc,
         sign: "",
@@ -345,13 +379,97 @@ export const App = () => {
         res: alteredRes,
       });
     } else if(calc.num !== 0) {
-      let alteredNum = toLocaleString(Math.log(removeSpaces(calc.num)));
+      let alteredNum = toLocaleString(Math.cos(removeSpaces(calc.num)));
       setCalc({
         ...calc,
         sign: "",
         num: 0,
         res: alteredNum,
       });
+    }
+  };
+
+  /*
+    Handles the behaviour if the "tan" button was pressed.
+    Checks for previous input and applies the tangens function to that value.
+  */
+  const tanClickHandler = () => {
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(Math.tan(removeSpaces(calc.res)));
+      setCalc({
+        ...calc,
+        sign: "",
+        num: 0,
+        res: alteredRes,
+      });
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(Math.tan(removeSpaces(calc.num)));
+      setCalc({
+        ...calc,
+        sign: "",
+        num: 0,
+        res: alteredNum,
+      });
+    }
+  };
+
+  /*
+    Handles the behaviour if the "lg()" button was pressed.
+    Checks for previous input and calculates the natural logarithm (base e) of that value.
+    TODO: Add functionality if the first input is the lg button.
+      Validation needs to be implemented via equal button.
+  */
+  const lgClickHandler = () => {
+    if(calc.res !== 0) {
+      let alteredRes = toLocaleString(Math.log(removeSpaces(calc.res)));
+      if(alteredRes !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      } else {
+        let positiveRes = (calc.res).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: calc.num,
+          res: positiveRes,
+        });
+        alteredRes = "-" + toLocaleString(Math.log(removeSpaces(positiveRes)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredRes,
+        });
+      }
+    } else if(calc.num !== 0) {
+      let alteredNum = toLocaleString(Math.log(removeSpaces(calc.num)));
+      if(alteredNum !== "NaN") {
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      } else {
+        let positiveNum = (calc.num).substring(1);
+        setCalc({
+          ...calc,
+          sign: "",
+          num: positiveNum,
+          res: 0,
+        });
+        alteredNum = "-" + toLocaleString(Math.log(removeSpaces(positiveNum)));
+        setCalc({
+          ...calc,
+          sign: "",
+          num: 0,
+          res: alteredNum,
+        });
+      }
     }
   };
 
