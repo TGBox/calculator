@@ -301,8 +301,8 @@ export const App = () => {
       setCalc({
         ...calc,
         sign: "",
-        num: alteredNum,
-        res: 0,
+        num: 0,
+        res: alteredNum,
       });
     }
   };
@@ -349,8 +349,8 @@ export const App = () => {
       setCalc({
         ...calc,
         sign: "",
-        num: alteredNum,
-        res: 0,
+        num: 0,
+        res: alteredNum,
       });
     }
   };
