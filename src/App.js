@@ -30,6 +30,18 @@ const toLocaleString = (num) =>
   */
 const removeSpaces = (num) => num.toString().replace(/\s/g, "");
 
+/*
+  Value reformatting. Takes a String and checks if the first char is a "-". 
+  Returns the String if true, or adds a leading "-" and returns that combined String.
+*/
+const addLeadingMinus = (str) => {
+  if(str.charAt(0) === "-") {
+    return str;
+  } else {
+    return "-" + str;
+  }
+};
+
 export const App = () => {
 
   /* 
@@ -286,6 +298,8 @@ export const App = () => {
     Will calculate the logarithm for the given input on base 10.
     TODO: Add functionality if the first input is the log button.
       Validation needs to be implemented via equal button.
+    BUG: Negative input sometimes yields a result with two leading minuses. 
+      And Furter execution will result in "-NaN".
   */
   const logClickHandler = () => {
     if(calc.res !== 0) {
@@ -388,7 +402,7 @@ export const App = () => {
           num: calc.num,
           res: positiveNum,
         });
-        alteredNum = "-" + toLocaleString(Math.sin(removeSpaces(positiveNum)));
+        alteredNum = addLeadingMinus(toLocaleString(Math.sin(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
@@ -421,7 +435,7 @@ export const App = () => {
           num: calc.num,
           res: positiveRes,
         });
-        alteredRes = "-" + toLocaleString(Math.cos(removeSpaces(positiveRes)));
+        alteredRes = addLeadingMinus(toLocaleString(Math.cos(removeSpaces(positiveRes))));
         setCalc({
           ...calc,
           sign: "",
@@ -446,7 +460,7 @@ export const App = () => {
           num: calc.num,
           res: positiveNum,
         });
-        alteredNum = "-" + toLocaleString(Math.cos(removeSpaces(positiveNum)));
+        alteredNum = addLeadingMinus(toLocaleString(Math.cos(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
@@ -479,7 +493,7 @@ export const App = () => {
           num: calc.num,
           res: positiveRes,
         });
-        alteredRes = "-" + toLocaleString(Math.tan(removeSpaces(positiveRes)));
+        alteredRes = addLeadingMinus(toLocaleString(Math.tan(removeSpaces(positiveRes))));
         setCalc({
           ...calc,
           sign: "",
@@ -504,7 +518,7 @@ export const App = () => {
           num: calc.num,
           res: positiveNum,
         });
-        alteredNum = "-" + toLocaleString(Math.tan(removeSpaces(positiveNum)));
+        alteredNum = addLeadingMinus(toLocaleString(Math.tan(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
@@ -539,7 +553,7 @@ export const App = () => {
           num: calc.num,
           res: positiveRes,
         });
-        alteredRes = "-" + toLocaleString(Math.log(removeSpaces(positiveRes)));
+        alteredRes = addLeadingMinus(toLocaleString(Math.log(removeSpaces(positiveRes))));
         setCalc({
           ...calc,
           sign: "",
@@ -564,7 +578,7 @@ export const App = () => {
           num: positiveNum,
           res: 0,
         });
-        alteredNum = "-" + toLocaleString(Math.log(removeSpaces(positiveNum)));
+        alteredNum = addLeadingMinus(toLocaleString(Math.log(removeSpaces(positiveNum))));
         setCalc({
           ...calc,
           sign: "",
