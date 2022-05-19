@@ -476,8 +476,6 @@ export const App = () => {
     Will calculate the logarithm for the given input on base 10.
     TODO: Add functionality if the first input is the log button.
       Validation needs to be implemented via equal button.
-    BUG: Negative input sometimes yields a result with two leading minuses. 
-      And Furter execution will result in "-NaN".
   */
   const logClickHandler = () => {
     if(calc.res !== 0) {
