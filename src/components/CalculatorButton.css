@@ -1,16 +1,16 @@
 button {
   border: none;
-  background-color: rgb(153, 44, 204);
-  font-size: 30px;
-  color: rgb(255, 231, 77);
+  background-color: rgb(18, 0, 90);
+  font-size: 2rem;
+  color: rgb(255, 246, 185);
   font-weight: bold;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   outline: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 button:hover {
@@ -19,9 +19,12 @@ button:hover {
 
 .equals {
   grid-column: 3 / 5;
-  background-color: rgb(124, 8, 178);
+  background-color: rgb(0, 103, 22);
+  font-size: 2rem;
+  color: rgb(255, 246, 185);
+  font-weight: bold;
 }
 
 .equals:hover {
-  background-color: rgb(15, 214, 228);
+  background-color: rgb(17, 83, 0);
 }

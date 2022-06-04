@@ -1,10 +1,10 @@
 .CalculatorFrame {
-  width: 800px;
-  height: 540px;
-  padding: 20px;
-  border-radius: 20px;
-  border-spacing: 10px;
+  width: 600px;
+  height: 800px;
+  padding: 2rem;
+  border-radius: 2rem;
+  border-spacing: 1rem;
   border-style: solid;
   border-color: #28313b;
-  background-color: #048400;
+  background-color: #2e2e2e;
 }
